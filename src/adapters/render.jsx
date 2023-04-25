@@ -3,7 +3,16 @@ import React from "react";
 import {DevSupport} from "@react-buddy/ide-toolbox";
 import {ComponentPreviews, useInitial} from "../dev";
 import App from "../App";
-import {addMessage, addPost, updateMessageHandler} from "./state";
+import {
+    addMessage,
+    addFilm,
+    updateMessageHandler,
+    login,
+    logout,
+    register,
+    getCurrentUser,
+    getAuthHeader, getPublicContent, getUserContent, getManagerContent, getAdminContent, getAllFilms
+} from "./state";
 
 import '../index.css';
 import reportWebVitals from "../reportWebVitals";
@@ -16,8 +25,17 @@ export let rerenderEntireTree = (state) =>{
                         useInitialHook={useInitial}>
 
                 <App state={state}
-                     addPost={addPost}
-                     addMessage={addMessage}
+                     login={login}
+                     logout={logout}
+                     register={register}
+                     getCurrentUser={getCurrentUser}
+                     getAuthHeader={getAuthHeader}
+                     getPublicContent={getPublicContent}
+                     getUserContent={getUserContent}
+                     getManagerContent={getManagerContent}
+                     getAdminContent={getAdminContent}
+                     addFilm={addFilm}
+                     getAllFilms={getAllFilms}
                      updateMessageHandler={updateMessageHandler}/>
 
             </DevSupport>

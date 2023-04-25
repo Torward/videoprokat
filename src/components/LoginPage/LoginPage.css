@@ -1,6 +1,6 @@
 
 body {
-    background-color: rgb(35, 33, 33);
+    background-color: rgb(1, 1, 25);
 }
 
 input[type="text"i] {
@@ -63,7 +63,7 @@ input[type="password"i] {
 }
 
 .login-page__divider {
-    border: 1px solid rgb(22, 250, 41);
+    border: 1px solid rgb(99, 56, 109);
     width: 80px;
     height: 0px;
     margin-top: 25px;

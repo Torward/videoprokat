@@ -1,6 +1,15 @@
 import {rerenderEntireTree} from "./render";
+import axios from "axios";
 
 let state = {
+    loginPage: {
+        reqBody: [
+            {
+                username: "bob",
+                password: "100"
+            }
+        ]
+    },
     dialogsPage: {
         dialogs: [
             {
@@ -118,32 +127,81 @@ let state = {
         ],
     },
 }
-export let addPost = (postMessage) => {
-    let newPost = {
-        postId: 3,
-        username: "Атос",
-        location: "Paris",
-        userAvatar:
-            "https://mon.medikforum.ru/uploads/stars/atos_/medium_cd8efa6879b92dab9f473bf24fd35fcc.jpeg",
-        postImageURL: postMessage,
-        timeStamp: "11.12.2022",
-        likes: "7772",
-    };
-    state.feedPage.posts.push(newPost);
-    rerenderEntireTree(state);
+
+export let login = (username, password) => {
+    return axios
+        .post("http://localhost:8187/auth-service/signin", {
+            username,
+            password
+        }).then(response => {
+            if (response.data.accessToken) {
+                localStorage.setItem("user", JSON.stringify(response.data))
+            }
+            return response.data
+        })
 }
-export let addMessage = () => {
-    debugger;
-    let newMessage = {
-        id: 5,
-        text: state.dialogsPage.newMessageText,
-        time: '10:26',
-        username: 'Атос',
-        avatarImg: "https://mon.medikforum.ru/uploads/stars/atos_/medium_cd8efa6879b92dab9f473bf24fd35fcc.jpeg"
+
+export let logout = () => {
+    localStorage.removeItem("user")
+}
+
+export let register = (username, email, password) =>{
+    return axios
+        .post("http://localhost:8187/auth-service/signup", {
+            username,
+            email,
+            password
+        })
+}
+
+export let getCurrentUser = () => {
+return JSON.parse(localStorage.getItem('user'))
+}
+
+export let getAuthHeader = () =>{
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user && user.accessToken){
+        return {Authorization: 'Bearer' + user.accessToken}
+    }else {
+        return {}
     }
-    state.dialogsPage.messages.push(newMessage);
-    state.dialogsPage.newMessageText = '';
-    rerenderEntireTree(state);
+}
+
+export let getPublicContent = () => {
+    return axios.get("http://localhost:8189/catalog-service");
+}
+
+export let getUserContent = () => {
+    return axios.get("http://localhost:8189/lk-service/user", { headers: getAuthHeader() });
+}
+
+export let getManagerContent = () => {
+    return axios.get("http://localhost:8189/lk-service/manager", { headers: getAuthHeader() });
+}
+
+export let getAdminContent = () => {
+    return axios.get("http://localhost:8189/lk-service/admin", { headers: getAuthHeader() });
+}
+export let addFilm = (title, url_link, premier_year, country,genre, director, description) => {
+    return axios
+        .post("http://localhost:8187/catalog-service/add", {
+            title,
+            url_link,
+            premier_year,
+            country,
+            genre,
+            director,
+            description
+        })
+}
+export let getAllFilms = () => {
+    fetch("http://localhost:8189/catalog-service/films" )
+        .then(response =>response.json())
+        .then((data) => {
+            this.setState({films: data})
+        }).catch((error) => {
+        console.error("Error: " + error)
+    })
 }
 export let updateMessageHandler = (newText) => {
     state.dialogsPage.newMessageText = newText;
