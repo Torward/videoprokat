@@ -182,27 +182,24 @@ export let getManagerContent = () => {
 export let getAdminContent = () => {
     return axios.get("http://localhost:8189/lk-service/admin", { headers: getAuthHeader() });
 }
-export let addFilm = (title, url_link, premier_year, country,genre, director, description) => {
+export let addFilm = (title, imageUrlLink, premierYear, country,genre, director, description) => {
     return axios
         .post("http://localhost:8187/catalog-service/add", {
             title,
-            url_link,
-            premier_year,
+            imageUrlLink,
+            premierYear,
             country,
             genre,
             director,
             description
         })
 }
-export let getAllFilms = () => {
-    fetch("http://localhost:8189/catalog-service/films" )
-        .then(response =>response.json())
-        .then((data) => {
-            this.setState({films: data})
-        }).catch((error) => {
-        console.error("Error: " + error)
-    })
-}
+
+
+
+
+
+
 export let updateMessageHandler = (newText) => {
     state.dialogsPage.newMessageText = newText;
     rerenderEntireTree(state);

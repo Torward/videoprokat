@@ -2,6 +2,7 @@
 
 }
 .top_header{
+    margin-top: 10px;
     display: flex;
     background-color: transparent;
     width: 100%;
@@ -11,8 +12,8 @@
     height: 50px;
 }
 
-.logo {
-
+.logo img{
+    height: 50px;
 }
 
 .avatar {

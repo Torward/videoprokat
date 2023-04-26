@@ -35,7 +35,7 @@ export let rerenderEntireTree = (state) =>{
                      getManagerContent={getManagerContent}
                      getAdminContent={getAdminContent}
                      addFilm={addFilm}
-                     getAllFilms={getAllFilms}
+                     // getAllFilms={getAllFilms}
                      updateMessageHandler={updateMessageHandler}/>
 
             </DevSupport>

@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import LoginPage from "./components/LoginPage/LoginPage";
 import MainPage from "./components/MainPage/MainPage";
-import {addFilm, getAllFilms} from "./adapters/state";
+
 
 function App(props) {
   return (

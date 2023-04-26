@@ -31,7 +31,7 @@ function Header(props) {
         <div className={'header'}>
             <div className={'top_header'}>
                 <NavLink to={'/'} className={'logo'}>
-                    <img src={'/'} alt={'logo'}/>
+                    <img src={'https://w7.pngwing.com/pngs/654/21/png-transparent-alphabet-letter-character-3d-font-text-capital-typography.png'} alt={'logo'}/>
                 </NavLink>
                 <SearchBar/>
                 <div className={'menu_container'} ref={menuRef}>
